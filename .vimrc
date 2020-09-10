@@ -1,6 +1,3 @@
-let macvim_skip_colorscheme=1
-"set cmdheight=2
-
 filetype on
 set encoding=utf-8
 set nocompatible              " be iMproved, required
@@ -16,14 +13,13 @@ set background=dark
 " 自动缩进
 filetype indent on
 
-set rtp+=/home/harriszh/.fzf/
 " 开启语法高亮功能
 syntax enable
 " 允许用指定语法高亮配色方案替换默认方案
 syntax on
 
 "set runtimepath+=~/.vim/bundle/jshint2.vim/
-autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
+"autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
 "autocmd BufWritePre *.js :normal gggqG
 
 set nocompatible "关闭兼容模式
@@ -31,12 +27,12 @@ set incsearch "开启实时搜索功能
 set ignorecase "搜索忽略大小写
 set wildmenu "vim命令自动补全
 set autoread "文件自动更新
-"set gcr=a:block-blinkon0 "禁止关闭闪烁
+set gcr=a:block-blinkon0 "禁止关闭闪烁
 set laststatus=2 "总是显示状态栏
 set ruler "显示光标位置
 set number "显示行号
 set cursorline "高亮显示当前行
-"set cursorcolumn "高亮显示当前列
+set cursorcolumn "高亮显示当前列
 set hlsearch "高亮显示搜索结果
 " set nowrap "禁止折行
 set backspace=2 "回退键生效
@@ -123,6 +119,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "Plugin 'zxqfl/tabnine-vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mileszs/ack.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'chemzqm/vim-jsx-improve'
 Plugin 'flazz/vim-colorschemes'
@@ -133,7 +130,7 @@ Plugin 'kshenoy/vim-signature' "书签可视化的插件
 Plugin 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines' "书签行高亮
 Plugin 'majutsushi/tagbar' "taglist的增强版，查看标签，依赖于ctags
 Plugin 'scrooloose/nerdcommenter' "多行注释，leader键+cc生成, leader+cu删除注释
-"Plugin 'scrooloose/nerdtree' "文件浏览
+Plugin 'scrooloose/nerdtree' "文件浏览
 "Plugin 'Valloric/YouCompleteMe' "自动补全
 "Plugin 'marijnh/tern_for_vim' "js自动补全
 Plugin 'kien/ctrlp.vim' "搜索历史打开文件，在命令行模式下按ctrl+p触发
@@ -148,9 +145,10 @@ Plugin 'nathanaelkane/vim-indent-guides.git' "缩进对齐显示
 "Plugin 'vim-scripts/vimprj' "indexer 依赖
 "Plugin 'davidhalter/jedi-vim' "python 补全，不依赖于tags,但比较慢，可以使用indexer替换，但不能跳转项目外
 Plugin 'vim-scripts/Markdown'
+"Plugin 'gabrielelana/vim-markdown'
 Plugin 'tpope/vim-surround'
 Plugin 'ekalinin/Dockerfile.vim'
-"Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-syntastic/syntastic'
 "Plugin 'wookiehangover/jshint.vim'
 Plugin 'tmhedberg/matchit'
 "Plugin 'Shutnik/jshint2.vim'
@@ -161,7 +159,7 @@ call vundle#end()
 filetype on
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-"let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Powerline 设置
 " 设置状态栏主题风格
@@ -169,15 +167,13 @@ let g:Powerline_colorscheme='solarized256'
 
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 "Plug 'prettier/vim-prettier'
 Plug 'airblade/vim-gitgutter'
 "Plug 'pangloss/vim-javascript'
 Plug 'crusoexia/vim-monokai'
 Plug 'phanviet/vim-monokai-pro'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 " 设置tagbar
@@ -309,9 +305,7 @@ autocmd BufReadPost *.php,*.tpl,*.js,*.jsx,*.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call t
 map <F8> :TagbarToggle<CR>
 "nmap <F8> :TagbarToggle<CR>
 
-"CocCommand
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
 " 使用vimgrep立刻打开quickfix窗口
 augroup myvimrc
     autocmd!
@@ -322,8 +316,9 @@ augroup END
 " fzf预览窗
 let g:fzf_preview_window = 'right:60%'
 
-" ag
-" let g:ackprg = 'ag --nogroup --nocolor --column'
+" 忽略
+set wildignore=*/node_modules/*
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+" ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
+

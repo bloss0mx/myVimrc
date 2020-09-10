@@ -55,6 +55,7 @@ brew install fd
 ### bashrc/zshrc
 
 ```plain
+# 排除.gitignore中的文件
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 ```
@@ -111,4 +112,5 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ## TODO
 
-考虑提供一个脚本直接安装本 vimrc
+1. 考虑提供一个脚本直接安装本 vimrc
+1. 加入跳转到definition
