@@ -63,6 +63,8 @@ set foldmethod=syntax
 set nofoldenable
 " 交互式打开shell
 set shell=zsh
+" 换行缩进
+set autoindent
 
 " *************** 设置全局快捷键 *****************
 
@@ -71,7 +73,7 @@ set shell=zsh
 let mapleader="'"
 
 " 设置快捷键将选中文本块复制至系统剪贴板
-vnoremap <Leader>y "+y
+noremap <Leader>y "+y
 
 " 设置快捷键将系统剪贴板内容粘贴至 vim
 nmap <Leader>p "+p
@@ -89,7 +91,7 @@ nmap <Leader>w :w<CR>
 "nmap <Leader>Q :qa!<CR>
 
 " 依次遍历子窗口
-nnoremap nw <C-W><C-W>
+"nnoremap nw <C-W><C-W>
 
 " 跳转至右方的窗口
 nnoremap <Leader>l <C-W>l
@@ -120,8 +122,8 @@ call vundle#begin()
 "Plugin 'zxqfl/tabnine-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mileszs/ack.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'chemzqm/vim-jsx-improve'
+Plugin 'Yggdroot/indentLine' "显示列线
+Plugin 'chemzqm/vim-jsx-improve' "jsx增强
 Plugin 'flazz/vim-colorschemes'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Lokaltog/vim-powerline' "status 美化
@@ -174,6 +176,7 @@ Plug 'airblade/vim-gitgutter'
 "Plug 'pangloss/vim-javascript'
 Plug 'crusoexia/vim-monokai'
 Plug 'phanviet/vim-monokai-pro'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 " 设置tagbar
@@ -289,7 +292,9 @@ let g:indent_guides_guide_size=1
 " 快捷键 i 开/关缩进可视化
 noremap <Leader>sj :IndentGuidesToggle<CR>
 
-autocmd vimenter * NERDTree
+" 自动打开nerdtree
+"autocmd vimenter * NERDTree
+
 "execute pathogen#infect()
 "syntax on
 "filetype plugin indent on
