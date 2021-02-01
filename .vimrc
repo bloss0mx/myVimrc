@@ -176,7 +176,7 @@ Plug 'airblade/vim-gitgutter'
 "Plug 'pangloss/vim-javascript'
 Plug 'crusoexia/vim-monokai'
 Plug 'phanviet/vim-monokai-pro'
-Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify' " 首页
 call plug#end()
 
 " 设置tagbar
