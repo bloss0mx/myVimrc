@@ -145,7 +145,7 @@ Plugin 'nathanaelkane/vim-indent-guides.git' "缩进对齐显示
 "Plugin 'vim-scripts/indexer.tar.gz' "自动生成标签
 "Plugin 'vim-scripts/DfrankUtil' "indexer 依赖
 "Plugin 'vim-scripts/vimprj' "indexer 依赖
-"Plugin 'davidhalter/jedi-vim' "python 补全，不依赖于tags,但比较慢，可以使用indexer替换，但不能跳转项目外
+Plugin 'davidhalter/jedi-vim' "python 补全，不依赖于tags,但比较慢，可以使用indexer替换，但不能跳转项目外
 Plugin 'vim-scripts/Markdown'
 "Plugin 'gabrielelana/vim-markdown'
 Plugin 'tpope/vim-surround'
@@ -161,7 +161,18 @@ call vundle#end()
 filetype on
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+" syntastic 语法检查、lint
 let g:syntastic_javascript_checkers = ['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_loc_list_height = 8
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Powerline 设置
 " 设置状态栏主题风格
@@ -326,4 +337,7 @@ set wildignore=*/node_modules/*
 
 " ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" smarty.tpl => html
+au BufRead,BufNewFile *.tpl set filetype=html
 
