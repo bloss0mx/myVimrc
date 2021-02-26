@@ -4,7 +4,7 @@ set nocompatible              " be iMproved, required
 
 set termguicolors
 "colorscheme monokai_pro
-colorscheme vim_monokai
+colorscheme sickill_vim_monokai
 
 "let g:molokai_original = 1
 " 根据侦测到的不同类型加载对应的插件
@@ -79,10 +79,10 @@ noremap <Leader>y "+y
 nmap <Leader>p "+p
 
 " 定义快捷键关闭当前分割窗口
-nmap <Leader>q :q<CR>
+"nmap <Leader>q :q<CR>
 
 " 定义快捷键保存当前窗口内容
-nmap <Leader>w :w<CR>
+"nmap <Leader>w :w<CR>
 
 " 定义快捷键保存所有窗口内容并退出 vim
 "nmap <Leader>WQ :wa<CR>:q<CR>
@@ -106,10 +106,10 @@ nnoremap <Leader>k <C-W>k
 nnoremap <Leader>j <C-W>j
 
 " 定义快捷键在结对符之间跳转
-nmap <Leader>M %
+"nmap <Leader>M %
 
-nnoremap <Leader>g <C-]>
-nnoremap <Leader>b <C-t>
+"nnoremap <Leader>g <C-]>
+"nnoremap <Leader>b <C-t>
 
 
 " ************** 插件管理与设置 ************ "
@@ -119,6 +119,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 " vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
 call vundle#begin()
+Plugin 'dstein64/vim-win'
+Plugin 'Chiel92/vim-autoformat' "自动格式化
 "Plugin 'zxqfl/tabnine-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mileszs/ack.vim'
