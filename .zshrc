@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/philli/.oh-my-zsh"
+#export ZSH="~/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -73,7 +73,8 @@ plugins=(
   zsh-autosuggestions
 )
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
+source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # User configuration
 
