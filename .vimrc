@@ -75,6 +75,11 @@ let mapleader="'"
 " 设置快捷键将选中文本块复制至系统剪贴板
 noremap <Leader>y "+y
 
+" 设置快速使用prettier格式化代码
+nmap <Leader>r :Prettier<CR>:w<CR>
+" 设置快速使用autoformat格式化代码
+nmap <Leader>a :Autoformat<CR>:w<CR>
+
 " 设置快捷键将系统剪贴板内容粘贴至 vim
 nmap <Leader>p "+p
 
@@ -165,7 +170,7 @@ filetype on
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " syntastic 语法检查、lint
-let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_checkers = ['eslint']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -175,6 +180,10 @@ let g:syntastic_auto_loc_list = 2
 let g:syntastic_loc_list_height = 8
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = {
+        \ "mode": "active",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": ["javascript"] }
 
 " Powerline 设置
 " 设置状态栏主题风格
@@ -306,7 +315,12 @@ let g:indent_guides_guide_size=1
 noremap <Leader>sj :IndentGuidesToggle<CR>
 
 " 自动打开nerdtree
-"autocmd vimenter * NERDTree
+autocmd vimenter *
+  \ if !argc()
+  \ | Startify
+  \ | NERDTree
+  \ | wincmd w
+  \ | endif
 
 "execute pathogen#infect()
 "syntax on
